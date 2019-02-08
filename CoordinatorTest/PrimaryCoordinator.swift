@@ -8,6 +8,7 @@
 
 import UIKit
 
+import Additions
 import Coordinator
 
 extension UIResponder {
@@ -35,9 +36,9 @@ class PrimaryCoordinator: NavigationCoordinator {
     override func start(with completion: @escaping () -> Void) {
         objects = []
         
-        let vc = rootViewController.storyboard?.instantiateViewController(withIdentifier: "\(MasterViewController.self)") as! MasterViewController
+        let vc = rootViewController.storyboard!.instantiateViewController(MasterViewController.self)!
         vc.title = "Primary"
-        rootViewController.viewControllers = [vc]
+        root(vc)
         
         super.start(with: completion)
     }

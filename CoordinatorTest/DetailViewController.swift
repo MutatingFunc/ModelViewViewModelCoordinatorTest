@@ -8,7 +8,9 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+import Additions
+
+class DetailViewController: UIViewController, StoryboardIdentifiable {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+import Additions
+
+class MasterViewController: UITableViewController, StoryboardIdentifiable {
 
     override func viewDidLoad() {
         super.viewDidLoad()

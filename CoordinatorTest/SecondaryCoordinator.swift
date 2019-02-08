@@ -8,6 +8,7 @@
 
 import UIKit
 
+import Additions
 import Coordinator
 
 class SecondaryCoordinator: NavigationCoordinator {
@@ -23,9 +24,9 @@ class SecondaryCoordinator: NavigationCoordinator {
     }
     
     override func start(with completion: @escaping () -> Void) {
-        let vc = rootViewController.storyboard?.instantiateViewController(withIdentifier: "\(DetailViewController.self)") as! DetailViewController
+        let vc = rootViewController.storyboard!.instantiateViewController(DetailViewController.self)!
         vc.title = "Secondary"
-        rootViewController.viewControllers.append(vc)
+        root(vc)
         setupDetailViewController()
         
         super.start(with: completion)
