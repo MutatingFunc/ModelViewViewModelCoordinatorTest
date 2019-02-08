@@ -6,7 +6,7 @@ target 'CoordinatorTest' do
   use_frameworks!
 
   pod 'Additions',      :git => 'https://github.com/MutatingFunk/Additions.git'
-  pod 'Coordinator', 	:git => 'https://github.com/radianttap/Coordinator.git'
+  pod 'Coordinator', 	:git => 'https://github.com/MutatingFunk/Coordinator.git'
 
   # Pods for CoordinatorTest
 

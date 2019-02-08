@@ -9,9 +9,16 @@
 import UIKit
 
 import Additions
+import Coordinator
 
 class MasterViewController: UITableViewController, StoryboardIdentifiable {
 
+    var viewModel: MasterViewModel! {
+        didSet {
+            self.viewModelResponder = viewModel
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

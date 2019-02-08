@@ -11,16 +11,13 @@ import UIKit
 import Additions
 import Coordinator
 
-class SecondaryCoordinator: NavigationCoordinator {
-    let object: Date?
-    
+class SecondaryCoordinator: NavigationCoordinator<DetailViewModel> {
     var detailViewController: DetailViewController? {
         return rootViewController.viewControllers.first as? DetailViewController
     }
     
-    init(rootViewController: UINavigationController?, object: Date?) {
-        self.object = object
-        super.init(rootViewController: rootViewController)
+    override init(rootViewController: UINavigationController, viewModel: DetailViewModel) {
+        super.init(rootViewController: rootViewController, viewModel: viewModel)
     }
     
     override func start(with completion: @escaping () -> Void) {
@@ -33,6 +30,6 @@ class SecondaryCoordinator: NavigationCoordinator {
     }
     
     private func setupDetailViewController() {
-        self.detailViewController?.setup(detailText: object?.description)
+        self.detailViewController?.setup(detailViewModel: viewModel)
     }
 }

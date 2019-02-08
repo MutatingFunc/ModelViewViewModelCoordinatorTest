@@ -16,7 +16,7 @@ extension UIResponder {
     }
 }
 
-class AppCoordinator: Coordinator<UISplitViewController> {
+class AppCoordinator: Coordinator<UISplitViewController, MasterViewModel> {
     
     var secondaryCoordinator: SecondaryCoordinator? {
         // Child coordinators are automatically registered with a string identifier matching the class name.
@@ -25,9 +25,10 @@ class AppCoordinator: Coordinator<UISplitViewController> {
     }
     
     override func start(with completion: @escaping () -> Void) {
+        let primaryVM = MasterViewModel(objects: [], parentCoordinator: self)
         let primaryVC = rootViewController.storyboard!.instantiateViewController(withIdentifier: "PrimaryNav") as! UINavigationController
         rootViewController.viewControllers.append(primaryVC)
-        let primary = PrimaryCoordinator(rootViewController: primaryVC)
+        let primary = PrimaryCoordinator(rootViewController: primaryVC, viewModel: primaryVM)
         startChild(coordinator: primary)
         
         showDetailViewController(object: nil)
@@ -40,12 +41,13 @@ class AppCoordinator: Coordinator<UISplitViewController> {
     }
     
     private func showDetailViewController(object: Date?) {
+        let secondaryVM = DetailViewModel(object: object, parentCoordinator: self)
         let secondaryVC = rootViewController.storyboard!.instantiateViewController(withIdentifier: "SecondaryNav") as! UINavigationController
         rootViewController.showDetailViewController(secondaryVC, sender: nil)
         if let secondary = self.secondaryCoordinator {
             stopChild(coordinator: secondary)
         }
-        let secondary = SecondaryCoordinator(rootViewController: secondaryVC, object: object)
+        let secondary = SecondaryCoordinator(rootViewController: secondaryVC, viewModel: secondaryVM)
         startChild(coordinator: secondary)
     }
 }

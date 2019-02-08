@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Using the storyboard as a group of Nibs for convenience
         // In an proper project we'd have helpers to instantiate VCs of a given type, or load from Nibs
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RootViewController") as! UISplitViewController
-        let c = AppCoordinator(rootViewController: vc)
+        let c = AppCoordinator(rootViewController: vc, viewModel: MasterViewModel(objects: [], parentCoordinator: nil))
         return c
     }()
 
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return false
         */
         
-        if appCoordinator.secondaryCoordinator?.object == nil {
+        if appCoordinator.secondaryCoordinator?.viewModel.object == nil {
             return true
         }
         return false
