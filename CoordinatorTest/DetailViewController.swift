@@ -12,27 +12,22 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-
-    func configureView() {
+    
+    var detailText: String?
+    
+    func setup(detailText: String?) {
+        self.detailText = detailText
+        
+        guard self.isViewLoaded else { return }
+        
         // Update the user interface for the detail item.
-        if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
+        detailDescriptionLabel.text = detailText
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        configureView()
-    }
-
-    var detailItem: NSDate? {
-        didSet {
-            // Update the view.
-            configureView()
-        }
+        setup(detailText: detailText)
     }
 
 

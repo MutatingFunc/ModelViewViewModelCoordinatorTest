@@ -8,18 +8,33 @@
 
 import UIKit
 
+import Coordinator
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
+    
+    var appCoordinator: AppCoordinator = {
+        // Using the storyboard as a group of Nibs for convenience
+        // In an proper project we'd have helpers to instantiate VCs of a given type, or load from Nibs
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RootViewController") as! UISplitViewController
+        let c = AppCoordinator(rootViewController: vc)
+        return c
+    }()
 
-
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        window = UIWindow()
+        appCoordinator.start{}
+        window?.rootViewController = appCoordinator.rootViewController
+        
+        return true
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        let splitViewController = window!.rootViewController as! UISplitViewController
-        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-        splitViewController.delegate = self
+        
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
@@ -48,10 +63,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     // MARK: - Split view
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
+        /*
+        The MVC way of implementing this:
+        
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
         guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
         if topAsDetailController.detailItem == nil {
             // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+            return true
+        }
+        return false
+        */
+        
+        if appCoordinator.secondaryCoordinator?.object == nil {
             return true
         }
         return false
