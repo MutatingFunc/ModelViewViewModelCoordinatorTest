@@ -23,13 +23,10 @@ class SecondaryCoordinator: NavigationCoordinator<DetailViewModel> {
     override func start(with completion: @escaping () -> Void) {
         let vc = rootViewController.storyboard!.instantiateViewController(DetailViewController.self)!
         vc.title = "Secondary"
+        self.detailViewController?.viewModelResponder = self.viewModel
+        
         root(vc)
-        setupDetailViewController()
         
         super.start(with: completion)
-    }
-    
-    private func setupDetailViewController() {
-        self.detailViewController?.setup(detailViewModel: viewModel)
     }
 }

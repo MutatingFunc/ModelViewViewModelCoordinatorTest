@@ -13,10 +13,8 @@ import Coordinator
 
 class MasterViewController: UITableViewController, StoryboardIdentifiable {
 
-    var viewModel: MasterViewModel! {
-        didSet {
-            self.viewModelResponder = viewModel
-        }
+    var viewModel: MasterViewModelProtocol? {
+        return self.firstResponder(ofType: MasterViewModelProtocol.self)
     }
     
     override func viewDidLoad() {
@@ -35,7 +33,10 @@ class MasterViewController: UITableViewController, StoryboardIdentifiable {
 
     @objc
     func insertNewObject(_ sender: Any) {
-        coordinatingResponder?.addObjectAtStart()
+        guard let viewModel = self.viewModel else {
+            return
+        }
+        viewModel.addObjectAtStart()
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
@@ -47,18 +48,18 @@ class MasterViewController: UITableViewController, StoryboardIdentifiable {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return coordinatingResponder?.objectCount() ?? 0
+        return viewModel?.objectCount() ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        cell.textLabel!.text = coordinatingResponder?.title(atIndex: indexPath.row)
+        cell.textLabel!.text = viewModel?.title(atIndex: indexPath.row)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinatingResponder?.selectItem(atIndex: indexPath.row)
+        viewModel?.selectItem(atIndex: indexPath.row)
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -68,7 +69,7 @@ class MasterViewController: UITableViewController, StoryboardIdentifiable {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            coordinatingResponder?.removeObject(atIndex: indexPath.row)
+            viewModel?.removeObject(atIndex: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

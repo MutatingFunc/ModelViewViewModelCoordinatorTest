@@ -14,25 +14,14 @@ class DetailViewController: UIViewController, StoryboardIdentifiable {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-    var viewModel: DetailViewModel? {
-        didSet {
-            self.viewModelResponder = viewModel
-        }
+    var viewModel: DetailViewModelProtocol? {
+        return self.firstResponder(ofType: DetailViewModelProtocol.self)
     }
     
-    func setup(detailViewModel: DetailViewModel?) {
-        self.viewModel = detailViewModel
-        
-        guard self.isViewLoaded else { return }
-        
-        // Update the user interface for the detail item.
-        detailDescriptionLabel.text = detailViewModel?.object?.description
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        setup(detailViewModel: viewModel)
+        detailDescriptionLabel.text = viewModel?.object?.description
     }
 
 

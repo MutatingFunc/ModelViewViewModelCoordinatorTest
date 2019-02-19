@@ -9,6 +9,10 @@ import Foundation
 
 import Coordinator
 
+protocol DetailViewModelProtocol {
+    var object: Date? {get}
+}
+
 class DetailViewModel: ViewModel {
     let object: Date?
     
@@ -18,3 +22,5 @@ class DetailViewModel: ViewModel {
     }
     
 }
+
+extension DetailViewModel: DetailViewModelProtocol {}
