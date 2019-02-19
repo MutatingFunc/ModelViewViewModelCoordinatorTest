@@ -1,5 +1,5 @@
 //
-//  SecondaryCoordinator.swift
+//  DetailCoordinator.swift
 //  CoordinatorTest
 //
 //  Created by Froggatt, James on 31/01/2019.
@@ -11,7 +11,7 @@ import UIKit
 import Additions
 import Coordinator
 
-class SecondaryCoordinator: NavigationCoordinator<DetailViewModel> {
+class DetailCoordinator: NavigationCoordinator<DetailViewModel> {
     var detailViewController: DetailViewController? {
         return rootViewController.viewControllers.first as? DetailViewController
     }

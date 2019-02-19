@@ -1,5 +1,5 @@
 //
-//  PrimaryCoordinator.swift
+//  MasterCoordinator.swift
 //  CoordinatorTest
 //
 //  Created by Froggatt, James on 31/01/2019.
@@ -11,7 +11,7 @@ import UIKit
 import Additions
 import Coordinator
 
-class PrimaryCoordinator: NavigationCoordinator<MasterViewModel> {
+class MasterCoordinator: NavigationCoordinator<MasterViewModel> {
     
     override func start(with completion: @escaping () -> Void) {
         

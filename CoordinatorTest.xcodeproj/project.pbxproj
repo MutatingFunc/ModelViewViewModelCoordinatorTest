@@ -21,8 +21,8 @@
 		D69B291522035891002831EF /* CoordinatorTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B291422035891002831EF /* CoordinatorTestTests.swift */; };
 		D69B292022035891002831EF /* CoordinatorTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B291F22035891002831EF /* CoordinatorTestUITests.swift */; };
 		D69B293C22035B13002831EF /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B293B22035B13002831EF /* AppCoordinator.swift */; };
-		D69B293E22035EC7002831EF /* PrimaryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B293D22035EC7002831EF /* PrimaryCoordinator.swift */; };
-		D69B294022035ED4002831EF /* SecondaryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B293F22035ED4002831EF /* SecondaryCoordinator.swift */; };
+		D69B293E22035EC7002831EF /* MasterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B293D22035EC7002831EF /* MasterCoordinator.swift */; };
+		D69B294022035ED4002831EF /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B293F22035ED4002831EF /* DetailCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +81,8 @@
 		D69B291F22035891002831EF /* CoordinatorTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorTestUITests.swift; sourceTree = "<group>"; };
 		D69B292122035891002831EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D69B293B22035B13002831EF /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		D69B293D22035EC7002831EF /* PrimaryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryCoordinator.swift; sourceTree = "<group>"; };
-		D69B293F22035ED4002831EF /* SecondaryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryCoordinator.swift; sourceTree = "<group>"; };
+		D69B293D22035EC7002831EF /* MasterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterCoordinator.swift; sourceTree = "<group>"; };
+		D69B293F22035ED4002831EF /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		E2F3595477FE07F9CA8CDE44 /* Pods-CoordinatorTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoordinatorTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoordinatorTest/Pods-CoordinatorTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,8 +164,8 @@
 			children = (
 				D69B28FD2203588E002831EF /* AppDelegate.swift */,
 				D69B293B22035B13002831EF /* AppCoordinator.swift */,
-				D69B293D22035EC7002831EF /* PrimaryCoordinator.swift */,
-				D69B293F22035ED4002831EF /* SecondaryCoordinator.swift */,
+				D69B293D22035EC7002831EF /* MasterCoordinator.swift */,
+				D69B293F22035ED4002831EF /* DetailCoordinator.swift */,
 				D6151780220DC067004494FB /* MasterViewModel.swift */,
 				D6151782220DC0AC004494FB /* DetailViewModel.swift */,
 				D69B28FF2203588E002831EF /* MasterViewController.swift */,
@@ -430,8 +430,8 @@
 				D69B293C22035B13002831EF /* AppCoordinator.swift in Sources */,
 				D69B29022203588E002831EF /* DetailViewController.swift in Sources */,
 				D69B29002203588E002831EF /* MasterViewController.swift in Sources */,
-				D69B294022035ED4002831EF /* SecondaryCoordinator.swift in Sources */,
-				D69B293E22035EC7002831EF /* PrimaryCoordinator.swift in Sources */,
+				D69B294022035ED4002831EF /* DetailCoordinator.swift in Sources */,
+				D69B293E22035EC7002831EF /* MasterCoordinator.swift in Sources */,
 				D69B28FE2203588E002831EF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
